@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
   return (
     <div>
       <h1>Вход в trello</h1>
-      <div>
-        <input type="email" placeholder="Enter your Email..." />
-        <input type="password" placeholder="Enter your Password..." />
-      </div>
+      <form>
+        <input type="email" placeholder="Enter your Email..." value={email} />
+        <input
+          type="password"
+          placeholder="Enter your Password..."
+          value={pass}
+        />
+        <button>Submit</button>
+      </form>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { setUser } from "../store/slices/userSlice";
+// import { setUser } from "../store/slices/userSlice";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";

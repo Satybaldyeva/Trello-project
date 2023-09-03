@@ -12,8 +12,7 @@ export const HomePage = () => {
   const { isAuth } = useAuth();
   return isAuth ? (
     <div>
-      <Main />
-      <button onClick={() => dispatch(removeUser())}>Log Out </button>
+      <Main onLogOut={() => dispatch(removeUser())}></Main>
     </div>
   ) : (
     <div>

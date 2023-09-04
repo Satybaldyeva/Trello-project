@@ -5,6 +5,7 @@ export const TodoForm = ({ value }) => {
   return (
     <StyledForm action="">
       <h1>{value}</h1>
+      <input type="text" placeholder="+ Добавить карточку" />
     </StyledForm>
   );
 };

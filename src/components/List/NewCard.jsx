@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../store/slices/todoSlice";
+import { addTodo, addCard } from "../../store/slices/todoSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import styled from "styled-components";
 
-export const NewCard = () => {
+export const NewCard = ({ type, parentId }) => {
   const [value, setValue] = useState("");
   const [formIsOpen, setFormIsOpen] = useState(false);
 
@@ -12,13 +12,24 @@ export const NewCard = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (type) {
+      dispatch(
+        addCard({
+          id: nanoid(),
+          title: value,
+          parentId: parentId,
+        })
+      );
+    } else {
+      dispatch(
+        addTodo({
+          id: nanoid(),
+          title: value,
+        })
+      );
+    }
+    closeForm();
 
-    dispatch(
-      addTodo({
-        id: nanoid(),
-        title: value,
-      })
-    );
     setValue("");
   };
 
@@ -36,13 +47,18 @@ export const NewCard = () => {
 
   return (
     <TodoCard>
-      <button onClick={openForm}>+ Добавить список</button>
+      <button onClick={openForm}>
+        + Добавить
+        {type ? " карточку" : " список"}
+      </button>
 
       {formIsOpen && (
         <form onSubmit={submitHandler}>
           <input type="text" value={value} onChange={updateInputvalue} />
           <StyledButton>
-            <button onClick={submitHandler}>Добавить список</button>
+            <button onClick={submitHandler}>
+              {type ? "Добавить карточку" : "Добавить список"}
+            </button>
             <span onClick={closeForm}>X</span>
           </StyledButton>
         </form>
@@ -61,12 +77,12 @@ const TodoCard = styled("div")`
   padding: 1rem;
 
   & > button {
-    width: 330px;
     border: none;
     border-radius: 10px;
     padding: 6px;
     height: 35px;
-    color: #6b6565;
+    background-color: #b8b3b3;
+    color: #f1ebeb;
   }
 
   & > form > input {
@@ -78,6 +94,7 @@ const TodoCard = styled("div")`
 `;
 
 const StyledButton = styled("div")`
+  margin-top: 20px;
   & > button {
     background-color: #3040f5;
     border: none;

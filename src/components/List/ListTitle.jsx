@@ -1,8 +1,8 @@
 import React from "react";
-// import { Card } from "./Card";
 import { NewCard } from "./NewCard";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Card } from "./Card";
 
 export const ListTitle = () => {
   const { todos = [] } = useSelector((state) => state.todo);
@@ -10,10 +10,19 @@ export const ListTitle = () => {
     <>
       <StyledList>
         {todos.map((item) => (
-          <NewItem key={item.id}>{item.title}</NewItem>
+          <NewItem key={item.id}>
+            <div>{item.title}</div>
+            {item?.children?.length > 0 &&
+              item.children.map((children) => (
+                <Card key={children.id} cardInfo={children} />
+              ))}
+            <div>
+              <NewCard type="card" parentId={item.id} />
+            </div>
+          </NewItem>
         ))}
+
         <div>
-          {/* <Card />  */}
           <NewCard />
         </div>
       </StyledList>

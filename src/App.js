@@ -4,7 +4,6 @@ import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { Main } from "./components/Main";
-import { List } from "./components/List/List";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/main" element={<Main />} />
       </Routes>
-      <List />
     </>
   );
 }

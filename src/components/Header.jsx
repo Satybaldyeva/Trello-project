@@ -20,7 +20,7 @@ export const Header = () => {
 
 const StyledHeader = styled("div")`
   padding: 1.2rem;
-  width: 100%;
+  width: 98%;
   height: 80px;
   display: flex;
   background-color: #414545;
